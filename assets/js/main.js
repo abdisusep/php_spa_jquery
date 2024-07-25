@@ -23,18 +23,22 @@ $(document).ready(() => {
                 let { title, template, html } = data;
                 let contentPage = html.replace(/[\r\n]+/g, '');
 
-                $.get(`templates/${template}.php`, { content: contentPage })
-                .done(function(contentHtml) {
-                    $('#content').html(contentHtml.replace(/[\r\n]+/g, ''));
-                    document.title = title;
-                })
-                .fail(function(xhr, status, error) {
-                    $('#content').html('Error loading content: ' + error);
-                });
+                loadTemplate(template, contentPage, title);
             },
-            error: function(xhr, status, error) {
-                $('#content').html('Error loading content: ' + error);
+            error: function() {
+                loadTemplate('error', '', 'Page not found');
             }
+        });
+    }
+
+    let loadTemplate = (template, contentPage, title) => {
+        $.get(`templates/${template}.php`, { content: contentPage })
+        .done(function(contentHtml) {
+            $('#content').html(contentHtml.replace(/[\r\n]+/g, ''));
+            document.title = title;
+        })
+        .fail(function(xhr, status, error) {
+            $('#content').html('Error loading content: ' + error);
         });
     }
 
