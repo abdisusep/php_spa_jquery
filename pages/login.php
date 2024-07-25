@@ -3,38 +3,36 @@
 header('Content-Type: application/json');
 
 $html = "
-<h1>Login</h1>
-
-<form id='formLogin'>
-    <input type='text' id='username'> <br>
-    <input type='password' id='password'> <br>
-    <button type='submit'>Login</button>
-</form>
-
-<script>
-    $('#formLogin').on('submit', (e) => {
-        e.preventDefault();
-
-        let username = $('#username').val();
-        let password = $('#password').val();
-
-        if(username!='' && password!=''){
-            if(username=='admin' && password=='admin'){
-                window.location.hash = 'home';
-            }else{
-                alertMessage('Login failed!');
-            }
-        }else{
-            alertMessage('Required!');
-        }
-    });
-</script>
+<div class='container mt-5'>
+    <div class='row'>
+        <div class='col-lg-5 m-auto'>
+            <div class='card rounded border-0 shadow-sm p-3'>
+                <div class='card-body'>
+                    <h2>Login form</h2>
+                    <form id='formLogin'>
+                        <div class='mb-3'>
+                            <label class='form-label'>Username</label>
+                            <input type='text' class='form-control' id='username'>
+                        </div>
+                        <div class='mb-3'>
+                            <label class='form-label'>Password</label>
+                            <input type='password' class='form-control' id='password'>
+                        </div>
+                        <div class='mb-3'>
+                            <button type='submit' class='btn btn-primary'>Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 ";
 
 $response = [
     'template' => 'auth',
     'title'    => 'Login',
-    'html'     => $html,
+    'html'     => $html
 ];
 
 echo json_encode($response);

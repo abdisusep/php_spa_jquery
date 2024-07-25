@@ -9,8 +9,8 @@ $html = "
 
 $response = [
     'template' => 'default',
-    'title' => 'Home',
-    'html' => $html,
+    'title'    => 'Home',
+    'html'     => $html,
 ];
 
 echo json_encode($response);

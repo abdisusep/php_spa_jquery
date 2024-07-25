@@ -2,7 +2,7 @@
 
 header('Content-Type: application/json');
 
-$html = "<script>redirectTo('login');</script>";
+$html = "<script>redirectTo('/');</script>";
 
 $response = [
     'template' => 'default',

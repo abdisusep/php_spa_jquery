@@ -1,3 +1,5 @@
+let baseUrl = 'http://localhost/test';
+
 $(document).ready(() => {
     let defaultPage = 'login';
     
@@ -59,9 +61,40 @@ $(document).ready(() => {
 })
 
 let alertMessage = (text, type) => {
-    alert(text);
+    Swal.fire({
+        icon: `${type}`,
+        html: `<span style="font-size:20px;">${text}</span>`,
+        showConfirmButton: false,
+        timer: 2000
+    });
+}
+
+let alertConfirm = (text, url) => {
+    Swal.fire({
+        icon: 'question',
+        html: `<span style="font-size:20px;">${text}</span>`,
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            redirectTo(url);
+        }
+    });
 }
 
 let redirectTo = (page) => {
     window.location.hash = page;
 }       
+
+let loadCSS = (css) => {
+    css.forEach(file => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        if (file.startsWith('https://') || file.startsWith('http://')) {
+            link.href = file;
+        } else {
+            link.href = `${baseUrl}/assets/css/${file}`;
+        }
+        document.head.appendChild(link);
+    });
+}
