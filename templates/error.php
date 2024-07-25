@@ -1,2 +1,2 @@
 <h1>Page not found</h1>
-<a href="#home">< Back</a>
+<a href="#">< Back</a>
